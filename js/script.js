@@ -9,9 +9,24 @@ url += "&api_key=" + apiKey;
 
 console.log(url);
 
-$.getJSON({
-  url: url,
-  success: function(json) {
-    console.log(json);
-  }
-})
+// $.getJSON({
+//   url: url,
+//   success: function(json) {
+//     console.log(json);
+//   }
+// })
+
+function preload() {
+  $.getJSON({
+    url: url,
+    success: function(json) {
+      console.log(json);
+    }
+  })
+}
+
+function setup() {
+  createCanvas(100, 100);
+  background(color(150));
+
+}

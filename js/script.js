@@ -28,5 +28,4 @@ function preload() {
 function setup() {
   createCanvas(100, 100);
   background(color(150));
-
 }

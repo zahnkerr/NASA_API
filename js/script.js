@@ -18,7 +18,6 @@ var Star = function(x, y, stroke) {
     this.y = y;
     this.stroke = stroke;
 
-<<<<<<< HEAD
     this.drawStar = function() {
         var stroke;
 
@@ -32,14 +31,11 @@ var Star = function(x, y, stroke) {
 }
 
 
-=======
->>>>>>> edf542d49dcc633759aba44be645c17fc228f6e0
 function preload() {
   json = loadJSON(url);
 }
 
 function setup() {
-<<<<<<< HEAD
   starArray = [];
 
   for (var i = 0; i < starCount; i++) {
@@ -49,8 +45,6 @@ function setup() {
       starArray.push(new Star(x, y, stroke));
   }
 
-=======
->>>>>>> edf542d49dcc633759aba44be645c17fc228f6e0
   for(var i in json.near_earth_objects) {
     for(var k in json.near_earth_objects[i]) {
       append(neos, json.near_earth_objects[i][k]);
@@ -58,7 +52,6 @@ function setup() {
   }
   neoCount = neos.length;
   createCanvas(window.innerWidth, window.innerHeight);
-<<<<<<< HEAD
 
   background(color(150));
   console.log(json);
@@ -84,12 +77,13 @@ function draw() {
   ellipse(0, 0, 60, 60);
 
   for(var i in neos) {
+    if(neos[i].is_potentially_hazardous_asteroid) {
+      stroke("red");
+    } else {
+      noStroke();
+    }
     ellipse(cos(time) * (neoCount * i), sin(time) * (neoCount * i), 50 * neos[i].estimated_diameter.miles.estimated_diameter_max,
       50 * neos[i].estimated_diameter.miles.estimated_diameter_min
     );
   }
-=======
-
-  background(color(150));
->>>>>>> edf542d49dcc633759aba44be645c17fc228f6e0
 }

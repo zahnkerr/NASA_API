@@ -15,11 +15,10 @@ var Star = function(x, y, stroke) {
             stroke = this.stroke;
         }
         ellipse(this.x, this.y, stroke);
-}
+    }
 }
 
 function preload() {
-
     console.log(starArray);
 }
 

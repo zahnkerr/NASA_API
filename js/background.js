@@ -9,16 +9,28 @@ var Star = function(x, y, stroke) {
     this.drawStar = function() {
         var stroke;
 
+<<<<<<< HEAD
         if (Math.random() > .98) {
+=======
+        if (Math.random() > .995) {
+>>>>>>> edf542d49dcc633759aba44be645c17fc228f6e0
             stroke = this.stroke + random(1.5);
         } else {
             stroke = this.stroke;
         }
         ellipse(this.x, this.y, stroke);
+<<<<<<< HEAD
     }
 }
 
 function preload() {
+=======
+}
+}
+
+function preload() {
+
+>>>>>>> edf542d49dcc633759aba44be645c17fc228f6e0
     console.log(starArray);
 }
 

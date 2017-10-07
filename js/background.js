@@ -9,7 +9,7 @@ var Star = function(x, y, stroke) {
     this.drawStar = function() {
         var stroke;
 
-        if (Math.random() > .98) {
+        if (Math.random() > .995) {
             stroke = this.stroke + random(1.5);
         } else {
             stroke = this.stroke;

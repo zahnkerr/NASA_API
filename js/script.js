@@ -3,7 +3,7 @@ var startDate = "2017-10-04";
 var endDate = "2017-10-05";
 var url = "https://api.nasa.gov/neo/rest/v1/feed\?"
 var neos = [];
-var json, neoCount;
+var json, neoCount, time;
 
 url += "start_date=" + startDate;
 url += "&end_date=" + endDate;
@@ -11,6 +11,7 @@ url += "&api_key=" + apiKey;
 
 var starArray = [];
 var starCount = 500;
+
 
 // stars
 var Star = function(x, y, stroke) {
@@ -69,14 +70,16 @@ function draw() {
       starArray[i].drawStar()
   }
 
-  var time = millis()/2000;
-  //background("white");
+  // var time = millis()/2000;
+  // background("white");
 
   translate(width/2, height/2);
 
   ellipse(0, 0, 60, 60);
 
   for(var i in neos) {
+    console.log(neos[i].close_approach_data[0].relative_velocity.miles_per_hour);
+    time = millis() / Math.floor(neos[i].close_approach_data[0].relative_velocity.miles_per_hour) * 10;
     if(neos[i].is_potentially_hazardous_asteroid) {
       stroke("red");
     } else {

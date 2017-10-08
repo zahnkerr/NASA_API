@@ -9,20 +9,42 @@ url += "start_date=" + startDate;
 url += "&end_date=" + endDate;
 url += "&api_key=" + apiKey;
 
-console.log(url);
+var starArray = [];
+var starCount = 500;
 
-// $.getJSON({
-//   url: url,
-//   success: function(json) {
-//     console.log(json);
-//   }
-// })
+// stars
+var Star = function(x, y, stroke) {
+    this.x = x;
+    this.y = y;
+    this.stroke = stroke;
+
+    this.drawStar = function() {
+        var stroke;
+
+        if (Math.random() > .98) {
+            stroke = this.stroke + random(1.5);
+        } else {
+            stroke = this.stroke;
+        }
+        ellipse(this.x, this.y, stroke);
+    }
+}
+
 
 function preload() {
   json = loadJSON(url);
 }
 
 function setup() {
+  starArray = [];
+
+  for (var i = 0; i < starCount; i++) {
+      var x = random(window.innerWidth);
+      var y = random(window.innerHeight);
+      var stroke = random(1, 3);
+      starArray.push(new Star(x, y, stroke));
+  }
+
   for(var i in json.near_earth_objects) {
     for(var k in json.near_earth_objects[i]) {
       append(neos, json.near_earth_objects[i][k]);
@@ -35,15 +57,33 @@ function setup() {
   console.log(json);
   console.log(neos);
 
+  noStroke()
 }
 
 function draw() {
+  background(color(5, 0, 50, 50));
+
+  fill('white')
+
+  for (var i in starArray) {
+      starArray[i].drawStar()
+  }
+
   var time = millis()/2000;
-  background("white");
+  //background("white");
+
   translate(width/2, height/2);
+
   ellipse(0, 0, 60, 60);
+
   for(var i in neos) {
-    ellipse(cos(time) * (neoCount * i), sin(time) * (neoCount * i), 5);
-    console.log(neoCount * i);
+    if(neos[i].is_potentially_hazardous_asteroid) {
+      stroke("red");
+    } else {
+      noStroke();
+    }
+    ellipse(cos(time) * (neoCount * i), sin(time) * (neoCount * i), 50 * neos[i].estimated_diameter.miles.estimated_diameter_max,
+      50 * neos[i].estimated_diameter.miles.estimated_diameter_min
+    );
   }
 }

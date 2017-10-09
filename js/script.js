@@ -34,7 +34,7 @@ var Star = function(x, y, stroke) {
 
 function preload() {
   json = loadJSON(url);
-}
+  }
 
 function setup() {
   starArray = [];
@@ -66,15 +66,14 @@ function draw() {
 
   fill('white')
 
-  for (var i in starArray) {
-      starArray[i].drawStar()
-  }
+  // for (var i in starArray) {
+  //     starArray[i].drawStar()
+  // }
 
   // var time = millis()/2000;
   // background("white");
 
   translate(width/2, height/2);
-
   ellipse(0, 0, 60, 60);
 
   for(var i in neos) {
@@ -85,8 +84,10 @@ function draw() {
     } else {
       noStroke();
     }
-    ellipse(cos(time) * (neoCount * i), sin(time) * (neoCount * i), 50 * neos[i].estimated_diameter.miles.estimated_diameter_max,
-      50 * neos[i].estimated_diameter.miles.estimated_diameter_min
+    ellipse(cos(time) * (width * neos[i].close_approach_data[0].miss_distance.astronomical + 40)
+      , sin(time) * (height * neos[i].close_approach_data[0].miss_distance.astronomical + 40)
+      , 50 * neos[i].estimated_diameter.miles.estimated_diameter_max
+      , 50 * neos[i].estimated_diameter.miles.estimated_diameter_min
     );
   }
 }

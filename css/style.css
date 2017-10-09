@@ -2,3 +2,14 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.earthImg {
+  width: 90px;
+  height: 90px;
+  background-image: url("../img/earth.png");
+  background-size: contain;
+  position: absolute;
+  left: 595px;
+  top: 319px;
+  z-index: 1;
+}
